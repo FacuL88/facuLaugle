@@ -1,0 +1,107 @@
+.container__about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    padding: 2em;
+}
+
+.span__about {
+    color: var(--color-contrast-letter);
+}
+
+.li__about  {
+    list-style: none;
+}
+
+.li__about  {
+    list-style: none;
+}
+
+.col__title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+    position: relative;
+    color: var(--color--letter);
+}
+
+.col__title img {
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left:-150px;
+}
+
+.col__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.span__info {
+    color: var(--color-contrast-letter);
+}
+
+.col__info h2 {
+    color: var(--color--letter);
+}
+
+.span__download {
+    color: var(--color--letter);
+}
+
+.btn__dwl__cv{
+    background-color: var(--color-contrast-letter);
+    border-radius: 8px;
+    width: 45px;
+    padding: 2px;
+    font-weight: bold;
+}
+
+.btn__dwl__cv a {
+    text-decoration: none;
+}
+
+.container__skills{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+}
+
+.btn__linkedin {
+    margin: 5px 5px 5px 0px;
+    padding: 2px;
+    width: 45px;
+    background-color: var(--color-contrast-letter);
+    border-radius: 8px;
+    width: 45px;
+    font-weight: bold;
+}
+
+
+.span__btn__cv {
+    text-align: center;
+    margin: 0px 5px 10px 5px;
+}
+
+.parrafo__about{
+    margin: 10px 0px;
+    color: var(--color-contrast-letter);
+}
+
+.titulo__skills {
+    text-align: center;
+}
+
+.li__front {
+    list-style: none;
+    color: var(--color--letter);
+}
+
+.li__back {
+    list-style: none;
+    color: var(--color--letter);
+}
