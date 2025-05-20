@@ -44,6 +44,7 @@
   max-width: 500px;
 }
 
+
 .slide__content img {
     width: 100%;
     border-radius: 100%;
@@ -53,6 +54,7 @@
 .slide__title {
   font-size: 1.5rem;
   margin: 1em;
+  color: wheat;
 }
 
 .slide__description {

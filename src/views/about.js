@@ -21,7 +21,7 @@ export function renderAbout() {
               </button>
               <span class="span__download">download my</span>
               <button class="btn__dwl__cv">
-                <a href="#"> cv </a>
+                <a href="../assets/cv/facundoLaugle.pdf" download> cv </a>
               </button>
               <div class="container__input__dwl">
                 <p class='parrafo__about'>
