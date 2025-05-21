@@ -54,7 +54,7 @@
 .slide__title {
   font-size: 1.5rem;
   margin: 1em;
-  color: wheat;
+  color: var(--color--letter);
 }
 
 .slide__description {
