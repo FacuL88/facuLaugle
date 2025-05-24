@@ -53,15 +53,11 @@
 }
 
 .btn__dwl__cv{
-    background-color: var(--color-contrast-letter);
-    border-radius: 8px;
-    width: 45px;
-    padding: 2px;
-    font-weight: bold;
-}
-
-.btn__dwl__cv a {
     text-decoration: none;
+    color: black;
+    background-color: var(--color-contrast-letter);
+    padding: 0px 7px;
+    border-radius: 8px;
 }
 
 .container__skills{

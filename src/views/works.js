@@ -37,6 +37,7 @@ export function renderWorks() {
         <img src="${project.img}" alt="${project.name}" />
         <h2 class="slide__title">${project.name}</h2>
         <p class="slide__description">${project.desc}</p>
+        <a class="slide__link" href=${project.link} target="_blank" >${project.link}</a>
       </div>
     `;
   }

@@ -44,6 +44,16 @@
   max-width: 500px;
 }
 
+.slide__content a {
+  text-decoration: none;
+  color: var(--color--letter);
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+
+.slide__content a:hover {
+  color: #aaaaaaaf;
+}
 
 .slide__content img {
     width: 100%;
@@ -58,6 +68,7 @@
 }
 
 .slide__description {
+  margin-bottom: 20px;
   font-size: 1rem;
   color: var(--color-contrast-letter);
 }

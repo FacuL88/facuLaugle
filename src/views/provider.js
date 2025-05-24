@@ -8,24 +8,28 @@ export const arrayObj = [
         id: 1,
         name: "Ropeando()",
         desc: "{javascript, html, css}",
-        img: work_01
+        img: work_01,
+        link: "https://facul88.github.io/ropeando/"
     },
         {
         id: 2,
         name: "Vital pie()",
         desc: "{react, javascript, html, css}",
-        img: work_02
+        img: work_02,
+        link: "https://vitalpie.netlify.app"
     },
         {
         id: 3,
         name: "Arte()",
         desc: "Descripcion",
-        img: work_03
+        img: work_03,
+        link: ""
     },
         {
         id: 4,
         name: "HDL()",
         desc: "Descripcion",
-        img: work_04
+        img: work_04,
+        link: ""
     },
 ];

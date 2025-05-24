@@ -1,4 +1,7 @@
 export function renderAbout() {
+  const base = import.meta.env.BASE_URL;
+  const cvLink = `${base}assets/facundoLaugle.pdf`;
+
   const section = document.createElement('section');
   section.classList.add('section');
   section.innerHTML = `
@@ -20,9 +23,7 @@ export function renderAbout() {
                 <span class="span__btn">in</span>
               </button>
               <span class="span__download">download my</span>
-              <button class="btn__dwl__cv">
-                <a href="../assets/cv/facundoLaugle.pdf" download> cv </a>
-              </button>
+                <a id="btnDownloadCV" class="btn__dwl__cv">cv</a>
               <div class="container__input__dwl">
                 <p class='parrafo__about'>
                   Hola, soy Facundo. Desarrollador
@@ -63,5 +64,9 @@ export function renderAbout() {
       </div>
 
   `;
+  const downloadBtn = section.querySelector('#btnDownloadCV');
+  downloadBtn.href = cvLink;
+  downloadBtn.setAttribute('download', 'facundoLaugle.pdf')
+
   return section;
 }

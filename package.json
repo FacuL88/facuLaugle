@@ -3,11 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://facul88.github.io/faculaugle",
+  "homepage": "https://www.faculaugle.com",
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist" ,
     "build": "vite build",
     "preview": "vite preview"
   },
