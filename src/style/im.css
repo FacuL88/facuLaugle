@@ -32,7 +32,7 @@
 }
 
 .li__name {
-    list-style-type: disc;
+    list-style-type: none;
     color: var(--color-contrast-letter);
 }
 
@@ -61,4 +61,11 @@
 
 .span__desarrollador {
     margin: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .container__im {
+        margin: 20px;
+        text-align: center;
+    }
 }

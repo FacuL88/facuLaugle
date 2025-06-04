@@ -1,3 +1,5 @@
+@import url('./animations.css');
+
 #works {
     display: flex;
     flex-direction: column;
@@ -35,6 +37,29 @@
   padding: 2em;
 }
 
+#img__itemWorks {
+  width: 50px;
+
+}
+
+.itemIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+
+
+.itemIcon:hover {
+  color: #aaaaaaaf;
+}
+
+.shake-on-hover:hover {
+  animation: subtle-shake 0.4s ease-in-out;
+}
+
 .slide {
   text-align: center;
   width: 100%;
@@ -47,12 +72,6 @@
 .slide__content a {
   text-decoration: none;
   color: var(--color--letter);
-  transition-property: color;
-  transition-duration: 0.5s;
-}
-
-.slide__content a:hover {
-  color: #aaaaaaaf;
 }
 
 .slide__content img {
@@ -68,7 +87,7 @@
 }
 
 .slide__description {
-  margin-bottom: 20px;
+  margin: 20px 0px;
   font-size: 1rem;
   color: var(--color-contrast-letter);
 }
@@ -80,4 +99,43 @@
   cursor: pointer;
   padding: 1rem;
   color: #aaa;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+@media screen and (min-width: 120px) and (max-width: 425px) {
+  #img__itemWorks {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .itemIcon {
+    font-size: 16px;
+  }
+
+  .slide__title{
+    font-size: 16px;
+  }
+
+  .slider {
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  #img__itemWorks{
+    width: 40px;
+  }
+
+  .slider {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .slider {
+    width: 100%;
+  }
 }

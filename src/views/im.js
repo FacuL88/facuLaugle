@@ -13,7 +13,7 @@ section.innerHTML = `
         <ul>
           <li class='items__li li__name'><span>facu</span>.im()</li>
           <li class='items__li li__name__im'>Facundo Laugle</li>
-          <li class='items__li li__name__desc'>Desarrollo de aplicaciones web</li>
+          <li class='items__li li__name__desc'>{Desarrollo de aplicaciones web}</li>
         </ul>
       </div>
     </div>

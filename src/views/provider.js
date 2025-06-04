@@ -1,6 +1,6 @@
 import work_01 from '../assets/images/ropeando.jpeg'
 import work_02 from '../assets/images/vitalpie3.jpg'
-import work_03 from '../assets/images/arte.jpg'
+import work_03 from '../assets/images/cafecitoParisino.jpeg'
 import work_04 from '../assets/images/polea.jpg'
 
 export const arrayObj = [

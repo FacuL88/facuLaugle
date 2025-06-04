@@ -1,4 +1,5 @@
 import { arrayObj } from "./provider";
+import img_site from '../assets/icons/www.png'
 
 export function renderWorks() {
   const section = document.createElement('section');
@@ -35,9 +36,11 @@ export function renderWorks() {
     slide.innerHTML = `
       <div class="slide__content">
         <img src="${project.img}" alt="${project.name}" />
-        <h2 class="slide__title">${project.name}</h2>
         <p class="slide__description">${project.desc}</p>
-        <a class="slide__link" href=${project.link} target="_blank" >${project.link}</a>
+        <a href=${project.link} target=blank>
+          
+          <h2 class='itemIcon'><img src=${img_site} id="img__itemWorks" class="fa-solid fa-arrow-right shake-on-hover" alt="la imagen no esta disponible">${project.name}</h2>
+        </a>
       </div>
     `;
   }
@@ -47,11 +50,11 @@ export function renderWorks() {
   // Botones
   const prevBtn = document.createElement('button');
   prevBtn.classList.add('slider-btn', 'prev');
-  prevBtn.textContent = '<';
+  prevBtn.textContent = '<=';
 
   const nextBtn = document.createElement('button');
   nextBtn.classList.add('slider-btn', 'next');
-  nextBtn.textContent = '>';
+  nextBtn.textContent = '=>';
 
   prevBtn.addEventListener('click', () => {
     if (currentIndex > 0) {

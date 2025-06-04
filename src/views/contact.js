@@ -26,7 +26,7 @@ export function renderContact() {
           <li class="li__sec__contact__number">+541122526626</li>
           <li class="li__sec__contact">@linkedin</li>
           <li class="li__sec__contact">lauglefacundo@gmail.com</li>
-          <li class="li__sec__contact">facundolaugle.com</li>
+          <li class="li__sec__contact">faculaugle.com</li>
         </ul>
       </div>
     </div>

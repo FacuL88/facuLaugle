@@ -65,3 +65,21 @@
     color: var(--color-contrast-letter);
     font-weight: bold;
 }
+
+@media screen and (max-width: 768px) {
+    .data__contact {
+        width: 40px;
+    }
+
+    .data__contact__white {
+        width: 40px;
+    }
+
+    .col__data__contact {
+        font-size: 15px;
+    }
+
+    .li__contact h2 {
+       font-size: 20px;
+    }
+}
