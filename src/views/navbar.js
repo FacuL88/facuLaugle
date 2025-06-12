@@ -2,7 +2,7 @@ export function renderNavbar() {
   const navbar = document.querySelector('.nav');
 
   navbar.innerHTML = `
-    <div class="hamburger-container">
+    <div class="container__navbar">
       <div class="nav-panel">
         <ul class="ul__nav">
           <li class="li__nav" data-section="im">im()</li>
@@ -13,6 +13,8 @@ export function renderNavbar() {
       </div>
     </div>
   `;
+
+  const navPanel = document.querySelector('.nav-panel')
 
 
   // Scroll a la sección correspondiente

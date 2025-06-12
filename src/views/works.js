@@ -50,11 +50,11 @@ export function renderWorks() {
   // Botones
   const prevBtn = document.createElement('button');
   prevBtn.classList.add('slider-btn', 'prev');
-  prevBtn.textContent = '<=';
+  prevBtn.textContent = '<';
 
   const nextBtn = document.createElement('button');
   nextBtn.classList.add('slider-btn', 'next');
-  nextBtn.textContent = '=>';
+  nextBtn.textContent = '>';
 
   prevBtn.addEventListener('click', () => {
     if (currentIndex > 0) {
