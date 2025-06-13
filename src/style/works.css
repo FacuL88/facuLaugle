@@ -105,12 +105,12 @@
 
 .prev:hover {
   box-shadow: inset #1ed6ae 1px 1px 5px 1px;
-  border-radius: 0px 15px;
+  border-radius: 15px 0px 0px 15px;
 }
 
 .next:hover {
   box-shadow: inset #1ed6ae -1px 1px 5px 1px;
-  border-radius: 15px 0px;
+  border-radius: 0px 15px 15px 0px;
 }
 
 .slider-btn {
