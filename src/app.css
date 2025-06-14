@@ -46,9 +46,6 @@ body {
   max-width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
-  animation: appear both;
-  animation-timeline: view();
-  animation-range: contain 0% cover 30%;
 }
 
 
@@ -59,8 +56,6 @@ body {
   justify-content: flex-end;
   position: sticky;
   top: 20px;
-  animation: scrollOpacity 1s both;
-  animation-timeline: scroll();
 }
 
 .ul__nav {
