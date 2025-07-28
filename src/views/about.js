@@ -20,7 +20,9 @@ export function renderAbout() {
           <div class="col col__info">
             <div>
               <button class='btn__linkedin'>
-                <span class="span__btn">in</span>
+                <a href='https://www.linkedin.com/in/facundo-laugle-214605361' target=blanck>
+                  <span class="span__btn">in</span>
+                </a>
               </button>
               <span class="span__download">download my</span>
                 <a id="btnDownloadCV" class="btn__dwl__cv">cv</a>

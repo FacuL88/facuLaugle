@@ -80,6 +80,11 @@
     font-weight: bold;
 }
 
+.btn__linkedin a {
+    text-decoration: none;
+    color: black;
+}
+
 
 .span__btn__cv {
     text-align: center;
