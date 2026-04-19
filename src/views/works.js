@@ -46,9 +46,6 @@ export function renderWorks() {
         <div class="card-visual">
           <div class="card-glow-professional"></div>
           <img src="${project.img}" alt="${project.name}" class="project-image-professional" />
-          <div class="card-overlay-professional">
-            <div class="project-number">${String(index + 1).padStart(2, '0')}</div>
-          </div>
         </div>
         <div class="card-content">
           <h3 class="project-title-professional">${project.name}</h3>
