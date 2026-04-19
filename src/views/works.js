@@ -26,23 +26,9 @@ export function renderWorks() {
   const projectsGrid = document.createElement('div');
   projectsGrid.classList.add('projects-grid-professional');
 
-  // === Elegant Slider for Mobile/Tablet ===
-  const sliderContainer = document.createElement('div');
-  sliderContainer.classList.add('slider-container-professional');
-  
-  const sliderTrack = document.createElement('div');
-  sliderTrack.classList.add('slider-track-professional');
-  
-  // Navigation buttons
-  const prevBtn = document.createElement('button');
-  prevBtn.classList.add('slider-nav-professional', 'slider-prev');
-  prevBtn.innerHTML = '‹';
-  prevBtn.setAttribute('aria-label', 'Previous project');
-  
-  const nextBtn = document.createElement('button');
-  nextBtn.classList.add('slider-nav-professional', 'slider-next');
-  nextBtn.innerHTML = '›';
-  nextBtn.setAttribute('aria-label', 'Next project');
+  // === Responsive Grid for All Screen Sizes ===
+  const responsiveGrid = document.createElement('div');
+  responsiveGrid.classList.add('projects-grid-responsive');
 
   // Create project cards with professional design
   let currentSlide = 0;
@@ -95,89 +81,24 @@ export function renderWorks() {
       projectCard.style.transform = 'translateY(0) scale(1)';
     });
     
-    // Add to both grid and slider
+    // Add to both grids
     projectsGrid.appendChild(projectCard);
-    
-    // Create fresh clone for slider
-    const sliderCard = projectCard.cloneNode(true);
-    sliderTrack.appendChild(sliderCard);
+    responsiveGrid.appendChild(projectCard.cloneNode(true));
   });
 
-  // Professional slider functionality
-  function updateSlider() {
-    const screenWidth = window.innerWidth;
-    let slideWidth;
-    
-    // Responsive slide width
-    if (screenWidth <= 480) {
-      slideWidth = screenWidth * 0.9;
-    } else if (screenWidth <= 768) {
-      slideWidth = screenWidth * 0.85;
-    } else if (screenWidth <= 1024) {
-      slideWidth = 450;
-    } else {
-      slideWidth = 0;
-    }
-    
-    // Move slider
-    sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-    
-    // Update navigation
-    const totalSlides = sliderTrack.querySelectorAll('.project-card-professional').length;
-    prevBtn.style.opacity = currentSlide === 0 ? '0.3' : '1';
-    nextBtn.style.opacity = currentSlide >= totalSlides - 1 ? '0.3' : '1';
-  }
-  
-  prevBtn.addEventListener('click', () => {
-    if (currentSlide > 0) {
-      currentSlide--;
-      updateSlider();
-    }
-  });
-  
-  nextBtn.addEventListener('click', () => {
-    const totalSlides = sliderTrack.querySelectorAll('.project-card-professional').length;
-    if (currentSlide < totalSlides - 1) {
-      currentSlide++;
-      updateSlider();
-    }
-  });
-  
-  // Touch/swipe support
-  let touchStartX = 0;
-  sliderTrack.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  });
-  
-  sliderTrack.addEventListener('touchend', (e) => {
-    const touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    
-    if (Math.abs(diff) > 30) {
-      const totalSlides = sliderTrack.querySelectorAll('.project-card-professional').length;
-      if (diff > 0 && currentSlide < totalSlides - 1) {
-        currentSlide++;
-      } else if (diff < 0 && currentSlide > 0) {
-        currentSlide--;
-      }
-      updateSlider();
-    }
-  });
-  
   // Responsive layout management
   function updateLayout() {
     const screenWidth = window.innerWidth;
     
     if (screenWidth <= 1024) {
-      // Mobile/Tablet: Show slider
-      sliderContainer.style.display = 'flex';
+      // Mobile/Tablet: Show responsive grid
+      responsiveGrid.style.display = 'grid';
       projectsGrid.style.display = 'none';
     } else {
-      // Desktop: Show grid
-      sliderContainer.style.display = 'none';
+      // Desktop: Show professional grid
+      responsiveGrid.style.display = 'none';
       projectsGrid.style.display = 'grid';
     }
-    updateSlider();
   }
   
   window.addEventListener('resize', updateLayout);
@@ -197,7 +118,7 @@ export function renderWorks() {
   // Assemble structure
   colWorks.appendChild(particlesContainer);
   colWorks.appendChild(projectsGrid);
-  colWorks.appendChild(sliderContainer);
+  colWorks.appendChild(responsiveGrid);
   row.appendChild(colTitulo);
   row.appendChild(colWorks);
   container.appendChild(row);
