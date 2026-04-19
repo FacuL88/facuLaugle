@@ -295,11 +295,13 @@
     gap: 1.5rem;
     max-width: 350px;
     margin: 0 auto;
+    justify-items: center;
   }
   
   .project-card-professional {
     min-height: 350px;
     width: 100%;
+    max-width: 350px;
   }
   
   .card-visual {
@@ -341,11 +343,13 @@
     gap: 2rem;
     max-width: 450px;
     margin: 0 auto;
+    justify-items: center;
   }
   
   .project-card-professional {
     min-height: 380px;
     width: 100%;
+    max-width: 450px;
   }
   
   .card-visual {
@@ -387,11 +391,13 @@
     gap: 2rem;
     max-width: 900px;
     margin: 0 auto;
+    justify-items: center;
   }
   
   .project-card-professional {
     min-height: 400px;
     width: 100%;
+    max-width: 450px;
   }
   
   .card-visual {
