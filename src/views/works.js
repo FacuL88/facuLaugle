@@ -187,13 +187,21 @@ export function renderWorks() {
   function updateLayout() {
     const screenWidth = window.innerWidth;
     
+    // Force check every time
+    console.log('Screen width:', screenWidth, 'Elements:', {
+      sliderContainer: sliderContainer,
+      projectsGrid: projectsGrid
+    });
+    
     if (screenWidth <= 1024) {
       sliderContainer.style.display = 'flex';
       projectsGrid.style.display = 'none';
+      document.body.style.backgroundColor = 'red'; // Debug: red for mobile
       console.log('Mobile/Tablet mode: Showing slider');
     } else {
       sliderContainer.style.display = 'none';
       projectsGrid.style.display = 'grid';
+      document.body.style.backgroundColor = 'blue'; // Debug: blue for desktop
       console.log('Desktop mode: Showing grid, screen width:', screenWidth);
     }
     updateSlider();
