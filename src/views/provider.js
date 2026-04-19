@@ -40,11 +40,4 @@ export const arrayObj = [
         img: work_05,
         link: "https://clinapp00.netlify.app"
     },
-    {
-        id: 6,
-        name: "keyGenerator()",
-        desc: "{engineering, design}",
-        img: work_06,
-        link: "https://keygenerator01.netlify.app/"
-    },
-];
+    ];
