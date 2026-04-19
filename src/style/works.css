@@ -85,7 +85,7 @@
   width: 100%;
   position: relative;
   z-index: 1;
-  padding: 2rem 1rem;
+  padding: 2rem 3rem;
   overflow: hidden;
 }
 
@@ -93,8 +93,10 @@
   position: relative;
   width: 100%;
   max-width: 400px;
+  height: 400px;
   margin: 0 auto;
   overflow: hidden;
+  border: 1px solid transparent; /* Debug border */
 }
 
 .slider-track {
@@ -102,13 +104,15 @@
   transition: transform 0.3s ease-in-out;
   will-change: transform;
   height: 100%;
+  align-items: stretch;
 }
 
 .slider-track .project-card-3d {
-  flex: 0 0 100%;
-  width: 100%;
+  flex: 0 0 400px;
+  width: 400px;
   max-width: 400px;
   margin-right: 1rem;
+  height: 100%;
 }
 
 /* Slider Navigation */
@@ -128,22 +132,19 @@
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px var(--color-shadow-strong);
 }
 
 .slider-nav:hover {
-  background: var(--color-contrast-dark);
   transform: translateY(-50%) scale(1.1);
   box-shadow: 0 6px 20px var(--color-shadow-strong);
 }
 
 .slider-prev {
-  left: -45px;
+  left: 10px;
 }
 
 .slider-next {
-  right: -45px;
+  right: 10px;
 }
 
 /* 3D Holographic Cards */
@@ -356,7 +357,7 @@
     width: 100%;
     position: relative;
     z-index: 1;
-    padding: 2rem 1rem;
+    padding: 2rem 3rem;
     overflow: hidden;
   }
   
@@ -364,8 +365,10 @@
     position: relative;
     width: 100%;
     max-width: 400px;
+    height: 350px;
     margin: 0 auto;
     overflow: hidden;
+    border: 1px solid transparent;
   }
   
   .slider-track {
@@ -373,14 +376,15 @@
     transition: transform 0.3s ease-in-out;
     will-change: transform;
     height: 100%;
+    align-items: stretch;
   }
   
   .slider-track .project-card-3d {
-    flex: 0 0 100%;
-    width: 100%;
+    flex: 0 0 400px;
+    width: 400px;
     max-width: 400px;
     margin-right: 1rem;
-    height: 350px;
+    height: 100%;
   }
   
   .slider-nav {
@@ -391,11 +395,11 @@
   }
   
   .slider-prev {
-    left: -45px;
+    left: 10px;
   }
   
   .slider-next {
-    right: -45px;
+    right: 10px;
   }
 }
 
@@ -411,7 +415,7 @@
     width: 100%;
     position: relative;
     z-index: 1;
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 3rem;
     overflow: hidden;
   }
   
@@ -419,8 +423,10 @@
     position: relative;
     width: 85vw;
     max-width: 400px;
+    height: 320px;
     margin: 0 auto;
     overflow: hidden;
+    border: 1px solid transparent;
   }
   
   .slider-track {
@@ -428,14 +434,15 @@
     transition: transform 0.3s ease-in-out;
     will-change: transform;
     height: 100%;
+    align-items: stretch;
   }
   
   .slider-track .project-card-3d {
-    flex: 0 0 100%;
-    width: 100%;
+    flex: 0 0 85vw;
+    width: 85vw;
     max-width: 400px;
     margin-right: 0.5rem;
-    height: 320px;
+    height: 100%;
   }
   
   .slider-nav {
@@ -446,11 +453,11 @@
   }
   
   .slider-prev {
-    left: -40px;
+    left: 10px;
   }
   
   .slider-next {
-    right: -40px;
+    right: 10px;
   }
   
   .project-image-3d {

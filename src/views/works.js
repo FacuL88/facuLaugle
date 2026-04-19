@@ -125,18 +125,10 @@ export function renderWorks() {
     const isMobile = screenWidth <= 770;
     const isTablet = screenWidth <= 1024;
     
-    // Set card widths based on container
-    const cards = sliderTrack.querySelectorAll('.project-card-3d');
-    cards.forEach(card => {
-      // Let CSS handle the width, just ensure proper flex behavior
-      card.style.flex = '0 0 auto';
-      card.style.width = '';
-    });
-    
-    // Calculate slide width based on actual card width
+    // Calculate slide width based on viewport
     let slideWidth;
     if (isMobile) {
-      slideWidth = sliderWrapper.offsetWidth;
+      slideWidth = sliderWrapper.offsetWidth; // Use actual wrapper width
     } else if (isTablet) {
       slideWidth = 400; // Fixed width for tablets
     } else {
@@ -147,7 +139,7 @@ export function renderWorks() {
     sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
     
     // Update buttons
-    const totalSlides = cards.length;
+    const totalSlides = sliderTrack.querySelectorAll('.project-card-3d').length;
     prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
     nextBtn.style.display = currentSlide >= totalSlides - 1 ? 'none' : 'flex';
   }
