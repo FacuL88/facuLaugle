@@ -225,14 +225,16 @@
 }
 
 .project-image-3d {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   margin: 2rem auto;
   border: 3px solid var(--color-contrast-letter);
   box-shadow: 0 0 30px var(--color-shadow-strong);
   transition: all 0.3s ease;
+  min-height: 150px;
+  max-height: 250px;
 }
 
 .project-card-3d:hover .project-image-3d {
@@ -396,6 +398,14 @@
     max-width: 400px;
     margin-right: 1rem;
     height: 100%;
+  }
+
+.slider-track .project-card-3d .project-image-3d {
+    width: 150px;
+    height: 150px;
+    margin: 1rem auto;
+    min-height: 150px;
+    max-height: 250px;
   }
   
   .slider-nav {
