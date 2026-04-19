@@ -122,23 +122,26 @@ export function renderWorks() {
   // Simple slider functionality
   function updateSlider() {
     const screenWidth = window.innerWidth;
-    let slideWidth;
+    const isMobile = screenWidth <= 770;
+    const isTablet = screenWidth <= 1024;
     
-    // Calculate slide width
-    if (screenWidth <= 768) {
-      slideWidth = screenWidth * 0.9;
-    } else if (screenWidth <= 1024) {
-      slideWidth = 400;
+    // Set card widths based on container
+    const cards = sliderTrack.querySelectorAll('.project-card-3d');
+    cards.forEach(card => {
+      // Let CSS handle the width, just ensure proper flex behavior
+      card.style.flex = '0 0 auto';
+      card.style.width = '';
+    });
+    
+    // Calculate slide width based on actual card width
+    let slideWidth;
+    if (isMobile) {
+      slideWidth = sliderWrapper.offsetWidth;
+    } else if (isTablet) {
+      slideWidth = 400; // Fixed width for tablets
     } else {
       slideWidth = 0;
     }
-    
-    // Set card widths
-    const cards = sliderTrack.querySelectorAll('.project-card-3d');
-    cards.forEach(card => {
-      card.style.width = `${slideWidth}px`;
-      card.style.flex = `0 0 ${slideWidth}px`;
-    });
     
     // Move to current slide
     sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
