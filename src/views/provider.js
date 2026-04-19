@@ -16,7 +16,7 @@ export const arrayObj = [
         name: "Vital pie()",
         desc: "{react, javascript, html, css}",
         img: work_02,
-        link: "https://vitalpie.netlify.app"
+        link: "https://vitalpie.netlify.app/"
     },
         {
         id: 3,
