@@ -274,8 +274,152 @@
 
 /* Responsive Breakpoints */
 
-/* Mobile - 480px and below */
-@media screen and (max-width: 480px) {
+/* Very Small Mobile - 320px and below */
+@media screen and (max-width: 320px) {
+  #works {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .titulo__page {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .projects-grid-professional {
+    display: none;
+  }
+  
+  .projects-grid-responsive {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 300px;
+    margin: 0 auto;
+    justify-items: center;
+  }
+  
+  .project-card-professional {
+    min-height: 300px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .card-visual {
+    height: 150px;
+  }
+  
+  .card-content {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .project-title-professional {
+    font-size: 1.1rem;
+  }
+  
+  .project-desc-professional {
+    font-size: 0.8rem;
+  }
+}
+
+/* Small Mobile - 321px to 375px */
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  #works {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .titulo__page {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .projects-grid-professional {
+    display: none;
+  }
+  
+  .projects-grid-responsive {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    max-width: 320px;
+    margin: 0 auto;
+    justify-items: center;
+  }
+  
+  .project-card-professional {
+    min-height: 320px;
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .card-visual {
+    height: 160px;
+  }
+  
+  .card-content {
+    padding: 1.25rem;
+    gap: 0.6rem;
+  }
+  
+  .project-title-professional {
+    font-size: 1.2rem;
+  }
+  
+  .project-desc-professional {
+    font-size: 0.85rem;
+  }
+}
+
+/* Medium Mobile - 376px to 425px */
+@media screen and (min-width: 376px) and (max-width: 425px) {
+  #works {
+    padding: 1.75rem 1rem;
+  }
+  
+  .titulo__page {
+    font-size: 2.3rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .projects-grid-professional {
+    display: none;
+  }
+  
+  .projects-grid-responsive {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.3rem;
+    max-width: 340px;
+    margin: 0 auto;
+    justify-items: center;
+  }
+  
+  .project-card-professional {
+    min-height: 330px;
+    width: 100%;
+    max-width: 340px;
+  }
+  
+  .card-visual {
+    height: 170px;
+  }
+  
+  .card-content {
+    padding: 1.3rem;
+    gap: 0.65rem;
+  }
+  
+  .project-title-professional {
+    font-size: 1.25rem;
+  }
+  
+  .project-desc-professional {
+    font-size: 0.9rem;
+  }
+}
+
+/* Large Mobile - 426px to 480px */
+@media screen and (min-width: 426px) and (max-width: 480px) {
   #works {
     padding: 2rem 1rem;
   }
