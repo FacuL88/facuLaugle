@@ -22,6 +22,10 @@ export function renderWorks() {
   const colWorks = document.createElement('div');
   colWorks.classList.add('col', 'col__works');
 
+  // === Innovative 3D Grid for Desktop ===
+  const projectsGrid = document.createElement('div');
+  projectsGrid.classList.add('projects-grid-3d');
+
   // === Slider Container for Mobile/Tablet ===
   const sliderContainer = document.createElement('div');
   sliderContainer.classList.add('slider-container');
@@ -29,24 +33,23 @@ export function renderWorks() {
   const sliderWrapper = document.createElement('div');
   sliderWrapper.classList.add('slider-wrapper');
   
+  const sliderTrack = document.createElement('div');
+  sliderTrack.classList.add('slider-track');
+  
   // Navigation buttons
   const prevBtn = document.createElement('button');
   prevBtn.classList.add('slider-nav', 'slider-prev');
   prevBtn.innerHTML = '&#10094;';
+  prevBtn.setAttribute('aria-label', 'Previous project');
   
   const nextBtn = document.createElement('button');
   nextBtn.classList.add('slider-nav', 'slider-next');
   nextBtn.innerHTML = '&#10095;';
+  nextBtn.setAttribute('aria-label', 'Next project');
+
+  // Create project cards once and use them for both grid and slider
+  const projectCards = [];
   
-  // === Innovative 3D Grid for Desktop ===
-  const projectsGrid = document.createElement('div');
-  projectsGrid.classList.add('projects-grid-3d');
-
-  // === Slider Track for Mobile/Tablet ===
-  const sliderTrack = document.createElement('div');
-  sliderTrack.classList.add('slider-track');
-
-  // Render all projects with holographic effects
   arrayObj.forEach((project, index) => {
     const projectCard = document.createElement('div');
     projectCard.classList.add('project-card-3d');
@@ -114,19 +117,19 @@ export function renderWorks() {
       }
     });
     
-    // Add to both grid and slider track
+    projectCards.push(projectCard);
     projectsGrid.appendChild(projectCard);
-    sliderTrack.appendChild(projectCard.cloneNode(true));
   });
 
   // Slider functionality
   let currentSlide = 0;
-  const totalSlides = arrayObj.length;
+  const totalSlides = projectCards.length;
   
   function updateSlider() {
-    let slideWidth;
     const screenWidth = window.innerWidth;
+    let slideWidth;
     
+    // Calculate slide width based on screen size
     if (screenWidth <= 320) {
       slideWidth = screenWidth * 0.95;
     } else if (screenWidth <= 375) {
@@ -141,11 +144,19 @@ export function renderWorks() {
       slideWidth = 0;
     }
     
-    // Add margin for the gap between slides
-    const gap = screenWidth <= 425 ? 0.3 : screenWidth <= 770 ? 0.5 : 1;
-    const totalSlideWidth = slideWidth + gap;
+    // Clear and rebuild slider track with current cards
+    sliderTrack.innerHTML = '';
     
-    sliderTrack.style.transform = `translateX(-${currentSlide * totalSlideWidth}px)`;
+    projectCards.forEach((card, index) => {
+      const clonedCard = card.cloneNode(true);
+      clonedCard.style.width = `${slideWidth}px`;
+      clonedCard.style.flex = `0 0 ${slideWidth}px`;
+      sliderTrack.appendChild(clonedCard);
+    });
+    
+    // Calculate transform
+    const offset = currentSlide * slideWidth;
+    sliderTrack.style.transform = `translateX(-${offset}px)`;
     
     // Update navigation buttons
     prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
@@ -196,26 +207,24 @@ export function renderWorks() {
   // Handle window resize
   window.addEventListener('resize', () => {
     updateSlider();
+    updateLayout();
+  });
+  
+  function updateLayout() {
+    const isMobile = window.innerWidth <= 1024;
     
-    // Show/hide slider based on screen size
-    if (window.innerWidth <= 1024) {
-      sliderContainer.style.display = 'block';
+    if (isMobile) {
+      sliderContainer.style.display = 'flex';
       projectsGrid.style.display = 'none';
     } else {
       sliderContainer.style.display = 'none';
       projectsGrid.style.display = 'grid';
     }
-  });
+  }
   
   // Initial setup
   updateSlider();
-  if (window.innerWidth <= 1024) {
-    sliderContainer.style.display = 'block';
-    projectsGrid.style.display = 'none';
-  } else {
-    sliderContainer.style.display = 'none';
-    projectsGrid.style.display = 'grid';
-  }
+  updateLayout();
   
   // Assemble slider
   sliderWrapper.appendChild(sliderTrack);
