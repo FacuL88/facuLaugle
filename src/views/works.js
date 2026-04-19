@@ -124,12 +124,28 @@ export function renderWorks() {
   const totalSlides = arrayObj.length;
   
   function updateSlider() {
-    const slideWidth = window.innerWidth <= 768 ? 
-      window.innerWidth * 0.85 : 
-      window.innerWidth <= 1024 ? 
-      400 : 0;
+    let slideWidth;
+    const screenWidth = window.innerWidth;
     
-    sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    if (screenWidth <= 320) {
+      slideWidth = screenWidth * 0.95;
+    } else if (screenWidth <= 375) {
+      slideWidth = screenWidth * 0.92;
+    } else if (screenWidth <= 425) {
+      slideWidth = screenWidth * 0.90;
+    } else if (screenWidth <= 770) {
+      slideWidth = screenWidth * 0.85;
+    } else if (screenWidth <= 1024) {
+      slideWidth = 400;
+    } else {
+      slideWidth = 0;
+    }
+    
+    // Add margin for the gap between slides
+    const gap = screenWidth <= 425 ? 0.3 : screenWidth <= 770 ? 0.5 : 1;
+    const totalSlideWidth = slideWidth + gap;
+    
+    sliderTrack.style.transform = `translateX(-${currentSlide * totalSlideWidth}px)`;
     
     // Update navigation buttons
     prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
