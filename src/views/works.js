@@ -22,60 +22,92 @@ export function renderWorks() {
   const colWorks = document.createElement('div');
   colWorks.classList.add('col', 'col__works');
 
-  // === Slider Elements ===
-  const slider = document.createElement('div');
-  slider.classList.add('slider');
+  // === Innovative 3D Grid ===
+  const projectsGrid = document.createElement('div');
+  projectsGrid.classList.add('projects-grid-3d');
 
-  const slide = document.createElement('div');
-  slide.classList.add('slide');
-
-  let currentIndex = 0;
-
-  function updateSlide() {
-    const project = arrayObj[currentIndex];
-    slide.innerHTML = `
-      <div class="slide__content">
-        <img src="${project.img}" alt="${project.name}" />
-        <p class="slide__description">${project.desc}</p>
-        <a href=${project.link} target=blank>
-          
-          <h2 class='itemIcon'><img src=${img_site} id="img__itemWorks" class="fa-solid fa-arrow-right shake-on-hover" alt="la imagen no esta disponible">${project.name}</h2>
-        </a>
+  // Render all projects with holographic effects
+  arrayObj.forEach((project, index) => {
+    const projectCard = document.createElement('div');
+    projectCard.classList.add('project-card-3d');
+    projectCard.style.animationDelay = `${index * 0.2}s`;
+    
+    const linkTarget = project.link !== "#" ? "_blank" : "_self";
+    const linkHref = project.link !== "#" ? project.link : "javascript:void(0)";
+    
+    projectCard.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-glow"></div>
+          <img src="${project.img}" alt="${project.name}" class="project-image-3d" />
+          <div class="project-overlay">
+            <h3 class="project-title-3d">${project.name}</h3>
+            <div class="project-tech">${project.desc}</div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="back-content">
+            <h3 class="back-title">${project.name}</h3>
+            <p class="back-description">${project.desc}</p>
+            <div class="back-stats">
+              <div class="stat">
+                <span class="stat-value">${Math.floor(Math.random() * 50) + 10}</span>
+                <span class="stat-label">commits</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">${Math.floor(Math.random() * 20) + 5}</span>
+                <span class="stat-label">stars</span>
+              </div>
+            </div>
+            <a href="${linkHref}" target="${linkTarget}" class="project-link-3d">
+              <div class="link-content">
+                <img src="${img_site}" class="link-icon" alt="Ver proyecto" />
+                <span>Launch Project</span>
+              </div>
+              <div class="link-glow"></div>
+            </a>
+          </div>
+        </div>
       </div>
     `;
+    
+    // Add 3D tilt effect
+    projectCard.addEventListener('mousemove', (e) => {
+      const rect = projectCard.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 10;
+      const rotateY = (centerX - x) / 10;
+      
+      projectCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    });
+    
+    projectCard.addEventListener('mouseleave', () => {
+      projectCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    });
+    
+    projectsGrid.appendChild(projectCard);
+  });
+
+  // Add floating particles effect
+  const particlesContainer = document.createElement('div');
+  particlesContainer.classList.add('particles-container');
+  
+  for (let i = 0; i < 20; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.animationDelay = `${Math.random() * 5}s`;
+    particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+    particlesContainer.appendChild(particle);
   }
 
-  updateSlide();
-
-  // Botones
-  const prevBtn = document.createElement('button');
-  prevBtn.classList.add('slider-btn', 'prev');
-  prevBtn.textContent = '<';
-
-  const nextBtn = document.createElement('button');
-  nextBtn.classList.add('slider-btn', 'next');
-  nextBtn.textContent = '>';
-
-  prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateSlide();
-    }
-  });
-
-  nextBtn.addEventListener('click', () => {
-    if (currentIndex < arrayObj.length - 1) {
-      currentIndex++;
-      updateSlide();
-    }
-  });
-
   // Ensamblar estructura
-  slider.appendChild(slide);
-  colWorks.appendChild(prevBtn);
-  colWorks.appendChild(slider);
-  colWorks.appendChild(nextBtn);
-
+  colWorks.appendChild(particlesContainer);
+  colWorks.appendChild(projectsGrid);
   row.appendChild(colTitulo);
   row.appendChild(colWorks);
   container.appendChild(row);

@@ -21,15 +21,15 @@ export const arrayObj = [
         {
         id: 3,
         name: "Arte()",
-        desc: "Descripcion",
+        desc: "{photography, visual arts}",
         img: work_03,
-        link: ""
+        link: "#"
     },
         {
         id: 4,
         name: "HDL()",
-        desc: "Descripcion",
+        desc: "{engineering, design}",
         img: work_04,
-        link: ""
+        link: "#"
     },
 ];

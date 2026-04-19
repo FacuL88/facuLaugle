@@ -7,6 +7,8 @@
     align-items: center;
     text-align: center;
     animation: appear 2.5s both;
+    position: relative;
+    overflow: hidden;
 }
 
 .col__works {
@@ -14,7 +16,8 @@
     justify-content: center;
     align-items: center;
     margin: 2em;
-    max-height: 500px;
+    width: 100%;
+    position: relative;
 }
 
 .col__titulo{
@@ -26,151 +29,352 @@
   color: var(--color-contrast-letter);
 }
 
-.slider {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 500px;
+/* Particles Background */
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  pointer-events: none;
   overflow: hidden;
-  border: 2px solid #aaa;
-  border-radius: 20px 0px;
-  margin: 0 auto;
-  padding: 2em;
 }
 
-#img__itemWorks {
-  width: 50px;
-
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--color-contrast-letter);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 20s infinite linear;
 }
 
-.itemIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  transition-property: color;
-  transition-duration: 0.5s;
+@keyframes float {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(100px);
+    opacity: 0;
+  }
 }
 
-
-.itemIcon:hover {
-  color: #aaaaaaaf;
-}
-
-.shake-on-hover:hover {
-  animation: subtle-shake 0.4s ease-in-out;
-}
-
-.slide {
-  text-align: center;
+/* 3D Grid Layout */
+.projects-grid-3d {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
   width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
-.slide__content {
-  max-width: 500px;
+/* 3D Holographic Cards */
+.project-card-3d {
+  width: 100%;
+  height: 400px;
+  perspective: 1000px;
+  animation: cardEntrance 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(50px);
 }
 
-.slide__content a {
-  text-decoration: none;
-  color: var(--color--letter);
+@keyframes cardEntrance {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.slide__content img {
-    width: 100%;
-    border-radius: 100%;
-}
-
-
-.slide__title {
-  font-size: 1.5rem;
-  margin: 1em;
-  color: var(--color--letter);
-}
-
-.slide__description {
-  margin: 20px 0px;
-  font-size: 1rem;
-  color: var(--color-contrast-letter);
-}
-
-.prev {
-  transition-duration: 0.5s;
-}
-
-.next {
-  transition-duration: 0.5s;
-}
-
-.prev:hover {
-  box-shadow: inset #1ed6ae 1px 1px 5px 1px;
-  border-radius: 15px 0px 0px 15px;
-}
-
-.next:hover {
-  box-shadow: inset #1ed6ae -1px 1px 5px 1px;
-  border-radius: 0px 15px 15px 0px;
-}
-
-.slider-btn {
-  background-color: transparent;
-  border: none;
-  font-size: 2rem;
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
   cursor: pointer;
-  margin: 7px;
-  padding: 1rem;
-  color: #aaa;
-  height: 500px;
 }
 
+.project-card-3d:hover .card-inner {
+  transform: rotateY(180deg);
+}
 
-@media screen and (min-width: 120px) and (max-width: 425px) {
-  #img__itemWorks {
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--color-background), rgba(30, 214, 174, 0.1));
+  border: 2px solid var(--color-border);
+  backdrop-filter: blur(10px);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, rgba(30, 214, 174, 0.2), var(--color-background));
+  border-color: var(--color-contrast-letter);
+}
+
+/* Card Front */
+.card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--color-contrast-letter) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% { transform: scale(0.8); opacity: 0.1; }
+  100% { transform: scale(1.2); opacity: 0.3; }
+}
+
+.project-image-3d {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 2rem auto;
+  border: 3px solid var(--color-contrast-letter);
+  box-shadow: 0 0 30px var(--color-shadow-strong);
+  transition: all 0.3s ease;
+}
+
+.project-card-3d:hover .project-image-3d {
+  transform: scale(1.1);
+  box-shadow: 0 0 50px var(--color-shadow-strong);
+}
+
+.project-overlay {
+  padding: 1rem;
+}
+
+.project-title-3d {
+  font-size: 1.3rem;
+  color: var(--color-contrast-letter);
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px var(--color-shadow-strong);
+}
+
+.project-tech {
+  color: var(--color--letter);
+  font-size: 0.9rem;
+  font-family: "Source Code Pro", monospace;
+}
+
+/* Card Back */
+.back-content {
+  padding: 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.back-title {
+  font-size: 1.5rem;
+  color: var(--color-contrast-letter);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px var(--color-shadow-strong);
+}
+
+.back-description {
+  color: var(--color--letter);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.back-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.8rem;
+  color: var(--color-contrast-letter);
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--color--letter);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-link-3d {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+  background: var(--color-contrast-letter);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.link-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.link-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.project-link-3d:hover .link-icon {
+  transform: translateX(5px);
+}
+
+.link-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.project-link-3d:hover .link-glow {
+  left: 100%;
+}
+
+.project-link-3d:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px var(--color-shadow-strong);
+}
+
+/* Responsive Design for 3D Cards */
+@media screen and (max-width: 768px) {
+  .projects-grid-3d {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem;
+  }
+  
+  .project-card-3d {
+    height: 350px;
+  }
+  
+  .project-image-3d {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .project-title-3d {
+    font-size: 1.1rem;
+  }
+  
+  .back-title {
+    font-size: 1.3rem;
+  }
+  
+  .stat-value {
+    font-size: 1.5rem;
+  }
+  
+  .particle {
     display: none;
   }
+}
 
-  .slider {
-    height: 290px;
+@media screen and (max-width: 425px) {
+  .projects-grid-3d {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0.5rem;
   }
-
-  .slider-btn {
-    height: 290px;
+  
+  .project-card-3d {
+    height: 320px;
+  }
+  
+  .project-image-3d {
+    width: 80px;
+    height: 80px;
+    margin: 1.5rem auto;
+  }
+  
+  .project-title-3d {
+    font-size: 1rem;
+  }
+  
+  .project-tech {
+    font-size: 0.8rem;
+  }
+  
+  .back-content {
+    padding: 1.5rem;
+  }
+  
+  .back-title {
+    font-size: 1.2rem;
+  }
+  
+  .back-description {
+    font-size: 0.9rem;
+  }
+  
+  .stat-value {
+    font-size: 1.3rem;
+  }
+  
+  .stat-label {
+    font-size: 0.7rem;
+  }
+  
+  .project-link-3d {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .link-icon {
+    width: 16px;
+    height: 16px;
   }
 }
 
-@media screen and (max-width: 768px) {
-
-  .itemIcon {
-    font-size: 16px;
-  }
-
-  .slide__title{
-    font-size: 16px;
-  }
-
-  .slider {
-    width: 200px;
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .projects-grid-3d {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
   }
 }
 
-@media screen and (min-width: 425px) and (max-width: 768px) {
-  #img__itemWorks{
-    width: 40px;
-  }
-
-  .slider {
-    width: 300px;
-    height: 400px;
-  }
-
-  .slider-btn {
-    height: 400px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .slider {
-    width: 350px;
+@media screen and (min-width: 1025px) {
+  .projects-grid-3d {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }

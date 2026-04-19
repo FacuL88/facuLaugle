@@ -67,19 +67,71 @@
 }
 
 @media screen and (max-width: 768px) {
-    .data__contact {
-        width: 40px;
-    }
-
-    .data__contact__white {
-        width: 40px;
+    .container__contact {
+        flex-direction: column;
+        padding: 1em;
     }
 
     .col__data__contact {
+        flex-direction: column;
+        margin: 5px;
+        padding: 5px;
         font-size: 15px;
     }
 
+    .col__ul__contact {
+        flex-direction: column;
+        margin: 5px;
+        padding: 5px;
+    }
+
+    .data__contact {
+        width: 60px;
+        height: 25px;
+        font-size: 12px;
+    }
+
+    .data__contact__white {
+        width: 60px;
+        height: 25px;
+        font-size: 12px;
+    }
+
     .li__contact h2 {
-       font-size: 20px;
+       font-size: 18px;
+    }
+
+    .li__sec__contact {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container__contact {
+        padding: 0.5em;
+    }
+
+    .data__contact {
+        width: 50px;
+        height: 22px;
+        font-size: 11px;
+    }
+
+    .data__contact__white {
+        width: 50px;
+        height: 22px;
+        font-size: 11px;
+    }
+
+    .li__contact h2 {
+       font-size: 16px;
+    }
+
+    .li__sec__contact {
+        font-size: 12px;
+    }
+
+    .li__sec__contact__number {
+        font-size: 14px;
     }
 }
