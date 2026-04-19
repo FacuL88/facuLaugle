@@ -32,4 +32,11 @@ export const arrayObj = [
         img: work_04,
         link: "https://hdl-persianas.netlify.app"
     },
+    {
+        id: 5,
+        name: "Clinapp()",
+        desc: "{engineering, design}",
+        img: work_05,
+        link: "https://clinapp00.netlify.app"
+    },
 ];
