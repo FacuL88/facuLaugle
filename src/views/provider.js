@@ -30,6 +30,6 @@ export const arrayObj = [
         name: "HDL()",
         desc: "{engineering, design}",
         img: work_04,
-        link: "hdl-persianas.netlify.app"
+        link: "https://hdl-persianas.netlify.app"
     },
 ];
