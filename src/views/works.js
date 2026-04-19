@@ -22,16 +22,13 @@ export function renderWorks() {
   const colWorks = document.createElement('div');
   colWorks.classList.add('col', 'col__works');
 
-  // === Innovative 3D Grid for Desktop ===
+  // === Grid for Desktop ===
   const projectsGrid = document.createElement('div');
   projectsGrid.classList.add('projects-grid-3d');
 
-  // === Slider Container for Mobile/Tablet ===
+  // === Simple Slider for Mobile/Tablet ===
   const sliderContainer = document.createElement('div');
   sliderContainer.classList.add('slider-container');
-  
-  const sliderWrapper = document.createElement('div');
-  sliderWrapper.classList.add('slider-wrapper');
   
   const sliderTrack = document.createElement('div');
   sliderTrack.classList.add('slider-track');
@@ -47,8 +44,8 @@ export function renderWorks() {
   nextBtn.innerHTML = '&#10095;';
   nextBtn.setAttribute('aria-label', 'Next project');
 
-  // Create project cards once and use them for both grid and slider
-  const projectCards = [];
+  // Create project cards
+  let currentSlide = 0;
   
   arrayObj.forEach((project, index) => {
     const projectCard = document.createElement('div');
@@ -117,48 +114,37 @@ export function renderWorks() {
       }
     });
     
-    projectCards.push(projectCard);
+    // Add to both grid and slider
     projectsGrid.appendChild(projectCard);
+    sliderTrack.appendChild(projectCard.cloneNode(true));
   });
 
-  // Slider functionality
-  let currentSlide = 0;
-  const totalSlides = projectCards.length;
-  
+  // Simple slider functionality
   function updateSlider() {
     const screenWidth = window.innerWidth;
     let slideWidth;
     
-    // Calculate slide width based on screen size
-    if (screenWidth <= 320) {
-      slideWidth = screenWidth * 0.95;
-    } else if (screenWidth <= 375) {
-      slideWidth = screenWidth * 0.92;
-    } else if (screenWidth <= 425) {
-      slideWidth = screenWidth * 0.90;
-    } else if (screenWidth <= 770) {
-      slideWidth = screenWidth * 0.85;
+    // Calculate slide width
+    if (screenWidth <= 768) {
+      slideWidth = screenWidth * 0.9;
     } else if (screenWidth <= 1024) {
       slideWidth = 400;
     } else {
       slideWidth = 0;
     }
     
-    // Clear and rebuild slider track with current cards
-    sliderTrack.innerHTML = '';
-    
-    projectCards.forEach((card, index) => {
-      const clonedCard = card.cloneNode(true);
-      clonedCard.style.width = `${slideWidth}px`;
-      clonedCard.style.flex = `0 0 ${slideWidth}px`;
-      sliderTrack.appendChild(clonedCard);
+    // Set card widths
+    const cards = sliderTrack.querySelectorAll('.project-card-3d');
+    cards.forEach(card => {
+      card.style.width = `${slideWidth}px`;
+      card.style.flex = `0 0 ${slideWidth}px`;
     });
     
-    // Calculate transform
-    const offset = currentSlide * slideWidth;
-    sliderTrack.style.transform = `translateX(-${offset}px)`;
+    // Move to current slide
+    sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
     
-    // Update navigation buttons
+    // Update buttons
+    const totalSlides = cards.length;
     prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
     nextBtn.style.display = currentSlide >= totalSlides - 1 ? 'none' : 'flex';
   }
@@ -171,30 +157,25 @@ export function renderWorks() {
   });
   
   nextBtn.addEventListener('click', () => {
+    const totalSlides = sliderTrack.querySelectorAll('.project-card-3d').length;
     if (currentSlide < totalSlides - 1) {
       currentSlide++;
       updateSlider();
     }
   });
   
-  // Touch/swipe support
+  // Touch support
   let touchStartX = 0;
-  let touchEndX = 0;
-  
   sliderTrack.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
   });
   
   sliderTrack.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  });
-  
-  function handleSwipe() {
-    const swipeThreshold = 50;
+    const touchEndX = e.changedTouches[0].screenX;
     const diff = touchStartX - touchEndX;
     
-    if (Math.abs(diff) > swipeThreshold) {
+    if (Math.abs(diff) > 50) {
+      const totalSlides = sliderTrack.querySelectorAll('.project-card-3d').length;
       if (diff > 0 && currentSlide < totalSlides - 1) {
         currentSlide++;
       } else if (diff < 0 && currentSlide > 0) {
@@ -202,14 +183,9 @@ export function renderWorks() {
       }
       updateSlider();
     }
-  }
-  
-  // Handle window resize
-  window.addEventListener('resize', () => {
-    updateSlider();
-    updateLayout();
   });
   
+  // Handle resize and layout
   function updateLayout() {
     const isMobile = window.innerWidth <= 1024;
     
@@ -220,16 +196,17 @@ export function renderWorks() {
       sliderContainer.style.display = 'none';
       projectsGrid.style.display = 'grid';
     }
+    updateSlider();
   }
   
+  window.addEventListener('resize', updateLayout);
+  
   // Initial setup
-  updateSlider();
   updateLayout();
   
   // Assemble slider
-  sliderWrapper.appendChild(sliderTrack);
   sliderContainer.appendChild(prevBtn);
-  sliderContainer.appendChild(sliderWrapper);
+  sliderContainer.appendChild(sliderTrack);
   sliderContainer.appendChild(nextBtn);
 
   // Add floating particles effect
