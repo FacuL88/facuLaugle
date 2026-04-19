@@ -22,9 +22,29 @@ export function renderWorks() {
   const colWorks = document.createElement('div');
   colWorks.classList.add('col', 'col__works');
 
-  // === Innovative 3D Grid ===
+  // === Slider Container for Mobile/Tablet ===
+  const sliderContainer = document.createElement('div');
+  sliderContainer.classList.add('slider-container');
+  
+  const sliderWrapper = document.createElement('div');
+  sliderWrapper.classList.add('slider-wrapper');
+  
+  // Navigation buttons
+  const prevBtn = document.createElement('button');
+  prevBtn.classList.add('slider-nav', 'slider-prev');
+  prevBtn.innerHTML = '&#10094;';
+  
+  const nextBtn = document.createElement('button');
+  nextBtn.classList.add('slider-nav', 'slider-next');
+  nextBtn.innerHTML = '&#10095;';
+  
+  // === Innovative 3D Grid for Desktop ===
   const projectsGrid = document.createElement('div');
   projectsGrid.classList.add('projects-grid-3d');
+
+  // === Slider Track for Mobile/Tablet ===
+  const sliderTrack = document.createElement('div');
+  sliderTrack.classList.add('slider-track');
 
   // Render all projects with holographic effects
   arrayObj.forEach((project, index) => {
@@ -71,27 +91,121 @@ export function renderWorks() {
       </div>
     `;
     
-    // Add 3D tilt effect
+    // Add 3D tilt effect (only for desktop)
     projectCard.addEventListener('mousemove', (e) => {
-      const rect = projectCard.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const rotateX = (y - centerY) / 10;
-      const rotateY = (centerX - x) / 10;
-      
-      projectCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+      if (window.innerWidth > 1024) {
+        const rect = projectCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        projectCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+      }
     });
     
     projectCard.addEventListener('mouseleave', () => {
-      projectCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      if (window.innerWidth > 1024) {
+        projectCard.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      }
     });
     
+    // Add to both grid and slider track
     projectsGrid.appendChild(projectCard);
+    sliderTrack.appendChild(projectCard.cloneNode(true));
   });
+
+  // Slider functionality
+  let currentSlide = 0;
+  const totalSlides = arrayObj.length;
+  
+  function updateSlider() {
+    const slideWidth = window.innerWidth <= 768 ? 
+      window.innerWidth * 0.85 : 
+      window.innerWidth <= 1024 ? 
+      400 : 0;
+    
+    sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    
+    // Update navigation buttons
+    prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
+    nextBtn.style.display = currentSlide >= totalSlides - 1 ? 'none' : 'flex';
+  }
+  
+  prevBtn.addEventListener('click', () => {
+    if (currentSlide > 0) {
+      currentSlide--;
+      updateSlider();
+    }
+  });
+  
+  nextBtn.addEventListener('click', () => {
+    if (currentSlide < totalSlides - 1) {
+      currentSlide++;
+      updateSlider();
+    }
+  });
+  
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  sliderTrack.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  
+  sliderTrack.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+  
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0 && currentSlide < totalSlides - 1) {
+        currentSlide++;
+      } else if (diff < 0 && currentSlide > 0) {
+        currentSlide--;
+      }
+      updateSlider();
+    }
+  }
+  
+  // Handle window resize
+  window.addEventListener('resize', () => {
+    updateSlider();
+    
+    // Show/hide slider based on screen size
+    if (window.innerWidth <= 1024) {
+      sliderContainer.style.display = 'block';
+      projectsGrid.style.display = 'none';
+    } else {
+      sliderContainer.style.display = 'none';
+      projectsGrid.style.display = 'grid';
+    }
+  });
+  
+  // Initial setup
+  updateSlider();
+  if (window.innerWidth <= 1024) {
+    sliderContainer.style.display = 'block';
+    projectsGrid.style.display = 'none';
+  } else {
+    sliderContainer.style.display = 'none';
+    projectsGrid.style.display = 'grid';
+  }
+  
+  // Assemble slider
+  sliderWrapper.appendChild(sliderTrack);
+  sliderContainer.appendChild(prevBtn);
+  sliderContainer.appendChild(sliderWrapper);
+  sliderContainer.appendChild(nextBtn);
 
   // Add floating particles effect
   const particlesContainer = document.createElement('div');
@@ -108,6 +222,7 @@ export function renderWorks() {
   // Ensamblar estructura
   colWorks.appendChild(particlesContainer);
   colWorks.appendChild(projectsGrid);
+  colWorks.appendChild(sliderContainer);
   row.appendChild(colTitulo);
   row.appendChild(colWorks);
   container.appendChild(row);
