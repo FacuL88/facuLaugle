@@ -185,14 +185,16 @@ export function renderWorks() {
   
   // Handle resize and layout
   function updateLayout() {
-    const isMobile = window.innerWidth <= 1024;
+    const screenWidth = window.innerWidth;
     
-    if (isMobile) {
+    if (screenWidth <= 1024) {
       sliderContainer.style.display = 'flex';
       projectsGrid.style.display = 'none';
+      console.log('Mobile/Tablet mode: Showing slider');
     } else {
       sliderContainer.style.display = 'none';
       projectsGrid.style.display = 'grid';
+      console.log('Desktop mode: Showing grid, screen width:', screenWidth);
     }
     updateSlider();
   }
