@@ -2,6 +2,7 @@ import work_01 from '../assets/images/ropeando.jpeg'
 import work_02 from '../assets/images/vitalpie3.jpg'
 import work_03 from '../assets/images/cafecitoParisino.jpeg'
 import work_04 from '../assets/images/polea.jpg'
+import work_05 from '../assets/images/accesorio_11.jpg'
 
 export const arrayObj = [
     {
@@ -25,7 +26,7 @@ export const arrayObj = [
         img: work_03,
         link: "https://artebudano.netlify.app"
     },
-        {
+    {
         id: 4,
         name: "HDL()",
         desc: "{engineering, design}",
@@ -38,5 +39,12 @@ export const arrayObj = [
         desc: "{engineering, design}",
         img: work_05,
         link: "https://clinapp00.netlify.app"
+    },
+    {
+        id: 6,
+        name: "keyGenerator()",
+        desc: "{engineering, design}",
+        img: work_06,
+        link: "https://keygenerator01.netlify.app/"
     },
 ];
