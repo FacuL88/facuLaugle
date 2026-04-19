@@ -403,6 +403,24 @@
   }
 }
 
+/* Desktop layout - 1025px and above */
+@media screen and (min-width: 1025px) {
+  .projects-grid-3d {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .slider-container {
+    display: none !important;
+  }
+}
+
 @media screen and (max-width: 770px) {
   .projects-grid-3d {
     display: none;
