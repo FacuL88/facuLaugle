@@ -9,7 +9,7 @@ export const arrayObj = [
         name: "Ropeando()",
         desc: "{javascript, html, css}",
         img: work_01,
-        link: "https://facul88.github.io/ropeando/"
+        link: "https://ropeando.netlify.app"
     },
         {
         id: 2,
@@ -23,7 +23,7 @@ export const arrayObj = [
         name: "Arte()",
         desc: "{photography, visual arts}",
         img: work_03,
-        link: "#"
+        link: "https://artebudano.netlify.app"
     },
         {
         id: 4,
