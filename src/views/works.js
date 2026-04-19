@@ -59,7 +59,7 @@ export function renderWorks() {
       <div class="card-inner">
         <div class="card-front">
           <div class="card-glow"></div>
-          <img src="${project.img}" alt="${project.name}" class="project-image-3d" />
+          <img src="${project.img}" alt="${project.name}" class="project-image-3d" onerror="console.error('Image failed to load:', '${project.img}')" />
           <div class="project-overlay">
             <h3 class="project-title-3d">${project.name}</h3>
             <div class="project-tech">${project.desc}</div>
@@ -116,7 +116,10 @@ export function renderWorks() {
     
     // Add to both grid and slider
     projectsGrid.appendChild(projectCard);
-    sliderTrack.appendChild(projectCard.cloneNode(true));
+    
+    // Create fresh clone for slider to avoid image loading issues
+    const sliderCard = projectCard.cloneNode(true);
+    sliderTrack.appendChild(sliderCard);
   });
 
   // Simple slider functionality
