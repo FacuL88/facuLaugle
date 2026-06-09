@@ -4,10 +4,14 @@
 #works {
   width: 100%;
   max-width: 1400px;
-  padding: 3rem 2rem;
+  padding: 3rem 1rem;
   position: relative;
   z-index: 1;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Title Section */
@@ -46,6 +50,8 @@
   z-index: 1;
   padding: 1rem;
   margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Professional Project Cards */
@@ -281,7 +287,7 @@
   }
   
   .titulo__page {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 1.5rem;
   }
   
@@ -293,15 +299,15 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
-    max-width: 300px;
+    max-width: 280px;
     margin: 0 auto;
     justify-items: center;
   }
   
   .project-card-professional {
-    min-height: 300px;
+    min-height: 280px;
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
   }
   
   .card-visual {

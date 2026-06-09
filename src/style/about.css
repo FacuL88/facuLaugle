@@ -2,10 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90vw;
+    width: 100%;
     max-width: 800px;
-    padding: 2em;
+    padding: 2rem 1rem;
     margin: 0 auto;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .span__about {
@@ -20,11 +22,26 @@
     list-style: none;
 }
 
+.row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    text-align: center;
+}
+
+.col {
+    width: 100%;
+    max-width: 100%;
+}
+
 .col__title{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2em;
+    margin: 1rem;
     position: relative;
     color: var(--color--letter);
     flex-direction: column;
@@ -46,7 +63,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .span__info {
@@ -120,8 +137,11 @@
 
 @media screen and (max-width: 768px) {
     .container__about {
-        width: 95vw;
-        padding: 1em;
+        padding: 1rem;
+    }
+
+    .row {
+        gap: 1.5rem;
     }
 
     .col__title img {
@@ -139,12 +159,20 @@
         width: 40px;
         font-size: 12px;
     }
+
+    .parrafo__about {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
 }
 
 @media screen and (max-width: 480px) {
     .container__about {
-        width: 98vw;
-        padding: 0.5em;
+        padding: 0.5rem;
+    }
+
+    .row {
+        gap: 1rem;
     }
 
     .col__title img {
@@ -158,6 +186,11 @@
     }
 
     .parrafo__about {
-        font-size: 14px;
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .titulo__skills {
+        font-size: 1.2rem;
     }
 }
