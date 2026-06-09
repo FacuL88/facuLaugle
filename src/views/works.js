@@ -22,29 +22,94 @@ export function renderWorks() {
   const colWorks = document.createElement('div');
   colWorks.classList.add('col', 'col__works');
 
-  // === Professional Grid for Desktop ===
+  // === Tab Navigation ===
+  const tabNavigation = document.createElement('div');
+  tabNavigation.classList.add('tab-navigation');
+
+  const webTab = document.createElement('button');
+  webTab.classList.add('tab-button', 'tab-button-active');
+  webTab.dataset.category = 'web';
+  webTab.innerHTML = `
+    <span class="tab-icon">🌐</span>
+    <span class="tab-text">Web Projects</span>
+    <span class="tab-count">${arrayObj.filter(p => p.category === 'web').length}</span>
+  `;
+
+  const mobileTab = document.createElement('button');
+  mobileTab.classList.add('tab-button');
+  mobileTab.dataset.category = 'mobile';
+  mobileTab.innerHTML = `
+    <span class="tab-icon">📱</span>
+    <span class="tab-text">iOS/Android</span>
+    <span class="tab-count">${arrayObj.filter(p => p.category === 'mobile').length}</span>
+  `;
+
+  tabNavigation.appendChild(webTab);
+  tabNavigation.appendChild(mobileTab);
+
+  // === Projects Container ===
+  const projectsContainer = document.createElement('div');
+  projectsContainer.classList.add('projects-container');
+
+  // === Desktop Grid ===
   const projectsGrid = document.createElement('div');
   projectsGrid.classList.add('projects-grid-professional');
 
-  // === Responsive Grid for All Screen Sizes ===
+  // === Responsive Grid ===
   const responsiveGrid = document.createElement('div');
   responsiveGrid.classList.add('projects-grid-responsive');
 
-  // Create project cards with professional design
-  let currentSlide = 0;
-  
-  arrayObj.forEach((project, index) => {
+  // === Filter Projects by Category ===
+  function filterProjects(category) {
+    const filteredProjects = arrayObj.filter(project => project.category === category);
+    
+    // Clear existing projects
+    projectsGrid.innerHTML = '';
+    responsiveGrid.innerHTML = '';
+
+    filteredProjects.forEach((project, index) => {
+      const projectCard = createProjectCard(project, index);
+      projectsGrid.appendChild(projectCard);
+      responsiveGrid.appendChild(projectCard.cloneNode(true));
+    });
+
+    // Update tab active states
+    document.querySelectorAll('.tab-button').forEach(tab => {
+      tab.classList.remove('tab-button-active');
+      if (tab.dataset.category === category) {
+        tab.classList.add('tab-button-active');
+      }
+    });
+
+    // Trigger animation
+    projectsGrid.style.opacity = '0';
+    responsiveGrid.style.opacity = '0';
+    setTimeout(() => {
+      projectsGrid.style.opacity = '1';
+      responsiveGrid.style.opacity = '1';
+    }, 50);
+  }
+
+  // === Create Project Card ===
+  function createProjectCard(project, index) {
     const projectCard = document.createElement('div');
     projectCard.classList.add('project-card-professional');
-    projectCard.style.animationDelay = `${index * 0.15}s`;
+    projectCard.style.animationDelay = `${index * 0.1}s`;
     
     const linkTarget = project.link !== "#" ? "_blank" : "_self";
     const linkHref = project.link !== "#" ? project.link : "javascript:void(0)";
+    
+    const categoryIcon = project.category === 'web' ? '🌐' : '📱';
+    const categoryLabel = project.category === 'web' ? 'Web' : 'Mobile';
     
     projectCard.innerHTML = `
       <div class="card-inner-professional">
         <div class="card-visual">
           <div class="card-glow-professional"></div>
+          <div class="card-category-badge">
+            <span class="category-icon">${categoryIcon}</span>
+            <span class="category-label">${categoryLabel}</span>
+          </div>
           <img src="${project.img}" alt="${project.name}" class="project-image-professional" />
         </div>
         <div class="card-content">
@@ -71,40 +136,40 @@ export function renderWorks() {
     
     // Add hover effects
     projectCard.addEventListener('mouseenter', () => {
-      projectCard.style.transform = 'translateY(-5px) scale(1.02)';
+      projectCard.style.transform = 'translateY(-8px) scale(1.02)';
     });
     
     projectCard.addEventListener('mouseleave', () => {
       projectCard.style.transform = 'translateY(0) scale(1)';
     });
     
-    // Add to both grids
-    projectsGrid.appendChild(projectCard);
-    responsiveGrid.appendChild(projectCard.cloneNode(true));
-  });
+    return projectCard;
+  }
 
-  // Responsive layout management
+  // === Tab Click Handlers ===
+  webTab.addEventListener('click', () => filterProjects('web'));
+  mobileTab.addEventListener('click', () => filterProjects('mobile'));
+
+  // === Responsive Layout Management ===
   function updateLayout() {
     const screenWidth = window.innerWidth;
     
     if (screenWidth <= 1024) {
-      // Mobile/Tablet: Show responsive grid
       responsiveGrid.style.display = 'grid';
       projectsGrid.style.display = 'none';
     } else {
-      // Desktop: Show professional grid
       responsiveGrid.style.display = 'none';
       projectsGrid.style.display = 'grid';
     }
   }
   
   window.addEventListener('resize', updateLayout);
-  
-  // Add floating particles
+
+  // === Add Floating Particles ===
   const particlesContainer = document.createElement('div');
   particlesContainer.classList.add('particles-container-professional');
   
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 20; i++) {
     const particle = document.createElement('div');
     particle.classList.add('particle-professional');
     particle.style.animationDelay = `${Math.random() * 3}s`;
@@ -112,16 +177,21 @@ export function renderWorks() {
     particlesContainer.appendChild(particle);
   }
 
-  // Assemble structure
-  colWorks.appendChild(particlesContainer);
-  colWorks.appendChild(projectsGrid);
-  colWorks.appendChild(responsiveGrid);
+  // === Assemble Structure ===
+  projectsContainer.appendChild(particlesContainer);
+  projectsContainer.appendChild(projectsGrid);
+  projectsContainer.appendChild(responsiveGrid);
+  
+  colWorks.appendChild(tabNavigation);
+  colWorks.appendChild(projectsContainer);
+  
   row.appendChild(colTitulo);
   row.appendChild(colWorks);
   container.appendChild(row);
   section.appendChild(container);
 
-  // Initialize
+  // === Initialize with Web Projects ===
+  filterProjects('web');
   updateLayout();
 
   return section;
